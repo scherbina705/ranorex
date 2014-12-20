@@ -2,112 +2,109 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>ranorex</groupId>
+    <groupId>com.ranorex</groupId>
     <artifactId>ranorex</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>ranorex</name>
+    <name>com.ranorex</name>
     <url>http://maven.apache.org</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <thucydides.version>0.9.275</thucydides.version>
+        <thucydides.jbehave.version>0.9.275</thucydides.jbehave.version>
         <webdriver.driver>firefox</webdriver.driver>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>net.thucydides</groupId>
+            <artifactId>thucydides-core</artifactId>
+            <version>${thucydides.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.thucydides</groupId>
+            <artifactId>thucydides-junit</artifactId>
+            <version>${thucydides.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.thucydides</groupId>
+            <artifactId>thucydides-jbehave-plugin</artifactId>
+            <version>${thucydides.jbehave.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.easytesting</groupId>
+            <artifactId>fest-assert</artifactId>
+            <version>1.4</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <version>2.7.1</version>
+                <version>2.11</version>
                 <configuration>
-                    <systemPropertyVariables>
-                        <webdriver.driver>${webdriver.driver}</webdriver.driver>
-                    </systemPropertyVariables>
+                    <skip>true</skip>
                 </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>2.11</version>
+                <configuration>
+                    <includes>
+                        <include>**/*Test.java</include>
+                        <include>**/Test*.java</include>
+                        <include>**/When*.java</include>
+                        <include>**/*TestSuite.java</include>
+                    </includes>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9</version>
             </plugin>
             <plugin>
                 <groupId>net.thucydides.maven.plugins</groupId>
                 <artifactId>maven-thucydides-plugin</artifactId>
-                <version>0.4.9</version>
+                <version>${thucydides.version}</version>
+                <executions>
+                    <execution>
+                        <id>thucydides-reports</id>
+                        <phase>post-integration-test</phase>
+                        <goals>
+                            <goal>aggregate</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
-
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>3.8.1</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!--WebDrivers-->
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-chrome-driver</artifactId>
-            <version>2.44.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-firefox-driver</artifactId>
-            <version>2.44.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-htmlunit-driver</artifactId>
-            <version>2.44.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.openqa.selenium.server</groupId>
-            <artifactId>selenium-server</artifactId>
-            <version>1.0-20081010.060147</version>
-        </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-support</artifactId>
-            <version>2.41.0</version>
-        </dependency>
-
-
-        <dependency>
-            <groupId>org.jbehave</groupId>
-            <artifactId>jbehave-core</artifactId>
-            <version>3.9.5</version>
-        </dependency>
-
-
-        <dependency>
-            <groupId>net.thucydides</groupId>
-            <artifactId>thucydides-core</artifactId>
-            <version>0.9.275</version>
-        </dependency>
-        <dependency>
-            <groupId>net.thucydides</groupId>
-            <artifactId>thucydides-junit</artifactId>
-            <version>0.9.275</version>
-        </dependency>
-        <dependency>
-            <groupId>net.thucydides.maven.plugins</groupId>
-            <artifactId>maven-thucydides-plugin</artifactId>
-            <version>0.9.275</version>
-        </dependency>
-
-        <dependency>
-            <groupId>net.thucydides</groupId>
-            <artifactId>thucydides-jbehave-plugin</artifactId>
-            <version>0.9.275</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>1.6.1</version>
-            <type>pom</type>
-        </dependency>
-
-    </dependencies>
 
 </project>
