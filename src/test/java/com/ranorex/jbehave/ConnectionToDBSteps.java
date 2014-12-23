@@ -33,4 +33,14 @@ public class ConnectionToDBSteps {
     public void StatusIsChanged(String status){
         step.connectionStatusShouldBe(status);
     }
+
+	@Then("Load button is disabled")
+	public void loadButtonIsDisabled(){
+		step.loadButtonShouldBeDisabled();
+	}
+
+	@Then("Save button is disabled")
+	public void saveButtonIsDisabled(){
+		step.saveButtonShouldBeDisabled();
+	}
 }

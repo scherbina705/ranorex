@@ -11,6 +11,7 @@ import java.sql.DriverManager;
 import java.util.Iterator;
 import java.util.Set;
 
+import static com.thoughtworks.selenium.SeleneseTestBase.assertFalse;
 import static com.thoughtworks.selenium.SeleneseTestBase.assertTrue;
 
 public class VipDatabaseSteps extends ScenarioSteps{
@@ -43,4 +44,14 @@ public class VipDatabaseSteps extends ScenarioSteps{
     public void openPage(){
         page.open();
     }
+
+	@Step
+	public void loadButtonShouldBeDisabled(){
+		assertFalse(page.getLoadButton().isEnabled());
+	}
+
+	@Step
+	public void saveButtonShouldBeDisabled(){
+		assertFalse(page.getSaveButton().isEnabled());
+	}
 }

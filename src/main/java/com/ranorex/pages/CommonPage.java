@@ -9,20 +9,19 @@ import java.util.Set;
 public class CommonPage extends PageObject{
     private Object firstHandle;
     private Object lastHandle;
-    private WebDriver driver=getDriver();
 
     public void switchToWindowsPopup() {
-        Set<String> handles = driver.getWindowHandles();
+        Set<String> handles = getDriver().getWindowHandles();
         Iterator<String> itr = handles.iterator();
         firstHandle = itr.next();
         lastHandle = firstHandle;
         while (itr.hasNext()) {
             lastHandle = itr.next();
         }
-        driver.switchTo().window(lastHandle.toString());
+		getDriver().switchTo().window(lastHandle.toString());
     }
 
     public void switchToMainWindow() {
-        driver.switchTo().window(firstHandle.toString());
+		getDriver().switchTo().window(firstHandle.toString());
     }
 }
