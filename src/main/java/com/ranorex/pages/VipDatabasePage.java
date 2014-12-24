@@ -21,6 +21,10 @@ public class VipDatabasePage extends CommonPage{
         return find(By.id("connection"));
     }
 
+	public WebElementFacade getVIPCountLabel(){
+		return find(By.id("count"));
+	}
+
     public WebElementFacade getOkButtonInModalWindow(){
         return find(By.xpath("//button[contains(text(), 'OK')]"));
     }
@@ -29,7 +33,7 @@ public class VipDatabasePage extends CommonPage{
 		return find(By.id("FirstName"));
 	}
 
-	public WebElementFacade getLasttNameField(){
+	public WebElementFacade getLastNameField(){
 		return find(By.id("LastName"));
 	}
 
@@ -44,6 +48,10 @@ public class VipDatabasePage extends CommonPage{
 
 	public WebElementFacade getMaleRadioButton(){
 		return find(By.xpath("//input[@id='Gender' and @value='male']"));
+	}
+
+	public WebElementFacade getGenderRadioButton(String gender){
+		return find(By.xpath("//input[@id='Gender' and @value='"+gender+"']"));
 	}
 
 	public WebElementFacade getAddButton(){
@@ -68,6 +76,10 @@ public class VipDatabasePage extends CommonPage{
 
 	public List<WebElementFacade> getTableWebElements(){
 		return findAll(By.xpath("//tr[@id='heading']/following-sibling::tr"));
+	}
+
+	public List<WebElementFacade> getFirstRowWebElements(){
+		return findAll(By.xpath("//tr[@id='heading']/following-sibling::tr[1]/td/following-sibling::td"));
 	}
 
 }

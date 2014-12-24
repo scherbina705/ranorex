@@ -29,7 +29,7 @@ public class ConnectionToDBSteps {
         step.clickOnOkInModalWindow();
     }
 
-    @Then("the status changed to $status")
+    @Then("connection status changed to $status")
     public void StatusIsChanged(String status){
         step.connectionStatusShouldBe(status);
     }
