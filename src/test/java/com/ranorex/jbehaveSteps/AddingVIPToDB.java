@@ -1,4 +1,4 @@
-package com.ranorex.jbehave;
+package com.ranorex.jbehaveSteps;
 
 import com.ranorex.steps.VipDatabaseSteps;
 import net.thucydides.core.annotations.Steps;

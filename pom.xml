@@ -49,7 +49,7 @@
                 <version>2.16</version>
                 <configuration>
                     <includes>
-                        <include>**/jbehave/*Suite.java</include>
+                        <include>**/*TestRunner.java</include>
                     </includes>
                     <systemPropertyVariables>
                         <webdriver.driver>${webdriver.driver}</webdriver.driver>
