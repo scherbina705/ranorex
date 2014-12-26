@@ -7,11 +7,8 @@ import net.thucydides.core.pages.WebElementFacade;
 import net.thucydides.core.steps.ScenarioSteps;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.sql.DriverManager;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import static com.thoughtworks.selenium.SeleneseTestBase.assertFalse;
 import static com.thoughtworks.selenium.SeleneseTestBase.assertTrue;
@@ -38,7 +35,7 @@ public class VipDatabaseSteps extends ScenarioSteps{
     @Step
     public void clickOnOkInModalWindow(){
         page.switchToWindowsPopup();
-        page.getOkButtonInModalWindow().click();
+        page.getModalWindowOkButton().click();
         page.switchToMainWindow();
     }
 
@@ -107,5 +104,13 @@ public class VipDatabaseSteps extends ScenarioSteps{
 		//needed number is located in the end of the of the label text: "VIP count: 2"
 		String lastLabelCharacter = labelText.substring(labelText.lastIndexOf(" ")+1);
 		assertTrue(number.equals(lastLabelCharacter));
+	}
+
+	@Step
+	public void textInModalWindowShouldBe(String text){
+		page.switchToWindowsPopup();
+		String modalWindowText = page.getModalWindowTextLabel().getText();
+		page.switchToMainWindow();
+		assertTrue(text.equals(modalWindowText));
 	}
 }

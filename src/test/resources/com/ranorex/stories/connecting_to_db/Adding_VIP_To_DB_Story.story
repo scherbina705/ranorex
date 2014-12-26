@@ -1,22 +1,34 @@
 
-Scenario: Adding new VIP to table without previous loading
+Scenario: Adding new VIP to empty table (without previous loading)
 Given the user is on the VIP DB page
 And connection status should be Online
 And table is empty
-When the user fill <firstName>
-And the user fill <lastName>
-And the user select <category>
-And the user select <gender>
+When the user fill First Name with <firstName>
+And the user fill Last Name with <lastName>
+And the user select category <category>
+And the user select gender <gender>
 And the user click on Add button
 Then first row added to the table with values <firstName>, <lastName>, <gender>, <category>
 And vip count value equals 1
 
 Examples:|firstName|lastName|category|gender|
-|*';$&^#@!/"=+|=+*';$&^#@!|Other|Male|
-|--|--|Music|Male|
 |Tom|Johns|Movie|Male|
-|0123456789|0123456789|Science|Female|
-|Tiger|Woods|Sport|Male|
-|12345678901234567890123456789012345678901234567890|12345678901234567890123456789012345678901234567890|Politics|Female|
+|Tiger|Woods|Sport|Female|
 
+Scenario: Adding new VIP to table with empty First Name
+Given the user is on the VIP DB page
+And connection status should be Online
+When the user click on Add button
+Then appear modal window with text Please specify 'First Name' value
 
+Scenario: Adding new VIP to table with empty Last Name
+Given the user is on the VIP DB page
+And connection status should be Online
+When the user fill First Name with <firstName>
+And the user click on Add button
+Then appear modal window with text Please specify 'Last Name' value
+
+Examples:|firstName|
+|any name|
+
+Scenario:

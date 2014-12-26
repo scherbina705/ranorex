@@ -22,22 +22,22 @@ public class AddingVIPToDBSteps {
 		step.tableShouldBeEmpty();
 	}
 
-	@When("the user fill <firstName>")
+	@When("the user fill First Name with <firstName>")
 	public void userFillFirstName(@Named("firstName") String firstName){
 		step.fillFirstName(firstName);
 	}
 
-	@When("the user fill <lastName>")
+	@When("the user fill Last Name with <lastName>")
 	public void userFillLasttName(@Named("lastName") String lastName){
 		step.fillLastName(lastName);
 	}
 
-	@When("the user select <category>")
+	@When("the user select category <category>")
 	public void userSelectCategory(@Named("category") String category){
 		step.selectCategory(category);
 	}
 
-	@When("the user select <gender>")
+	@When("the user select gender <gender>")
 	public void userSelectGender(@Named("gender") String gender){
 		step.selectGenderByValue(gender.toLowerCase());
 	}
@@ -55,5 +55,10 @@ public class AddingVIPToDBSteps {
 	@Then("vip count value equals $number")
 	public void vipCountValue(String number){
 		step.vipCountValueShouldEquals(number);
+	}
+
+	@Then("appear modal window with text $text")
+	public void checkTextInModalWindow(String text){
+		step.textInModalWindowShouldBe(text);
 	}
 }

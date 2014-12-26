@@ -25,10 +25,6 @@ public class VipDatabasePage extends CommonPage{
 		return find(By.id("count"));
 	}
 
-    public WebElementFacade getOkButtonInModalWindow(){
-        return find(By.xpath("//button[contains(text(), 'OK')]"));
-    }
-
 	public WebElementFacade getFirstNameField(){
 		return find(By.id("FirstName"));
 	}
@@ -82,4 +78,12 @@ public class VipDatabasePage extends CommonPage{
 		return findAll(By.xpath("//tr[@id='heading']/following-sibling::tr[1]/td/following-sibling::td"));
 	}
 
+	//
+	public WebElementFacade getModalWindowTextLabel(){
+		return find(By.xpath("*//center/div[@id='alertTextOK']"));
+	}
+
+	public WebElementFacade getModalWindowOkButton(){
+		return find(By.xpath("//button[contains(text(), 'OK')]"));
+	}
 }
