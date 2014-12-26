@@ -1,4 +1,4 @@
-package com.ranorex.jbehaveSteps;
+package com.ranorex.jbehave;
 
 import com.ranorex.steps.VipDatabaseSteps;
 import net.thucydides.core.annotations.Steps;
@@ -7,17 +7,7 @@ import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 
-public class AddingVIPToDB {
-
-//	Given the user is on the VIP DB page
-//	And connection status should be Online
-//	When the user fill <firstName>
-//	And the user fill <lastName>
-//	And the user select <category>
-//	And the user select <gender>
-//	And the user click on Add button
-//	Then new row added in the table with <firstName>, <lastName>, <category>, <gender>
-//	And vip count value equals 1
+public class AddingVIPToDBSteps {
 
 	@Steps
 	VipDatabaseSteps step;

@@ -60,14 +60,12 @@ public class VipDatabaseSteps extends ScenarioSteps{
 
 	@Step
 	public void fillFirstName(String firstName){
-		page.getFirstNameField().clear();
-		page.getFirstNameField().sendKeys(firstName);
+		page.getFirstNameField().type(firstName);
 	}
 
 	@Step
 	public void fillLastName(String lastName){
-		page.getLastNameField().clear();
-		page.getLastNameField().sendKeys(lastName);
+		page.getLastNameField().type(lastName);
 	}
 
 	@Step

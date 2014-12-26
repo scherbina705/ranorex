@@ -1,10 +1,10 @@
-package com.ranorex.jbehaveSteps;
+package com.ranorex.jbehave;
 
 import com.ranorex.steps.VipDatabaseSteps;
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.*;
 
-public class ConnectionToDB {
+public class ConnectionToDBSteps {
     @Steps
     VipDatabaseSteps step;
 

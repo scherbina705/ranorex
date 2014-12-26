@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import java.util.Iterator;
 import java.util.Set;
 
-public class CommonPage extends PageObject{
+public abstract class CommonPage extends PageObject{
     private Object firstHandle;
     private Object lastHandle;
 

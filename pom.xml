@@ -16,7 +16,10 @@
         <thucydides.jbehave.version>0.9.275</thucydides.jbehave.version>
         <webdriver.driver>firefox</webdriver.driver>
         <webdriver.chrome.driver>/home/gatto/workspace/ranorex/bin/chromedriver</webdriver.chrome.driver>
-    </properties>
+		<maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
+		<maven-javadoc-plugin.version>2.9</maven-javadoc-plugin.version>
+		<maven-failsafe-plugin.version>2.18</maven-failsafe-plugin.version>
+	</properties>
 
     <dependencies>
         <dependency>
@@ -40,21 +43,29 @@
             <version>4.11</version>
             <scope>test</scope>
         </dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>1.6.1</version>
+		</dependency>
     </dependencies>
     <build>
         <plugins>
 
             <plugin>
                 <artifactId>maven-failsafe-plugin</artifactId>
-                <version>2.16</version>
+                <version>${maven-failsafe-plugin.version}</version>
                 <configuration>
                     <includes>
-                        <include>**/*TestRunner.java</include>
+                        <include>**/*Story.java</include>
                     </includes>
                     <systemPropertyVariables>
                         <webdriver.driver>${webdriver.driver}</webdriver.driver>
                         <webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
                     </systemPropertyVariables>
+					<parallel>classes</parallel>
+					<forkMode>perthread</forkMode>
+					<threadCount>4</threadCount>
                 </configuration>
                 <executions>
                     <execution>
@@ -68,12 +79,12 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
+                <version>${maven-compiler-plugin.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.9</version>
+                <version>${maven-javadoc-plugin.version}</version>
             </plugin>
             <plugin>
                 <groupId>net.thucydides.maven.plugins</groupId>
