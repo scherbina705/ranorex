@@ -1,3 +1,9 @@
+Meta:Connect from DB
+
+Narrative:
+As a user
+I want to connect to DB
+So that I can work with its info
 
 Scenario: Disconnecting from vip db
 Given the user is on the VIP DB page

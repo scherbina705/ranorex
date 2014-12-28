@@ -2,13 +2,11 @@ package com.ranorex.pages;
 
 import net.thucydides.core.annotations.DefaultUrl;
 import net.thucydides.core.annotations.findby.By;
-import net.thucydides.core.annotations.findby.FindBy;
 import net.thucydides.core.pages.WebElementFacade;
-import net.thucydides.core.pages.components.Dropdown;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @DefaultUrl("http://www.ranorex.com/web-testing-examples/vip/")
 public class VipDatabasePage extends CommonPage{
@@ -74,10 +72,17 @@ public class VipDatabasePage extends CommonPage{
 		return findAll(By.xpath("//tr[@id='heading']/following-sibling::tr"));
 	}
 
-	public List<WebElementFacade> getFirstRowWebElements(){
-		return findAll(By.xpath("//tr[@id='heading']/following-sibling::tr[1]/td/following-sibling::td"));
-	}
+    public List<WebElementFacade> getLastRowWebelements(){
+        return findAll(By.xpath("//tr[@id='heading']/following-sibling::tr[last()]/td/following-sibling::td"));
+    }
 
+    public List<String> getRowValues(List<WebElementFacade> RowWebElements){
+        List<String> rowValues = new ArrayList<String>();
+        for (WebElementFacade element: RowWebElements){
+            rowValues.add(element.getText());
+        }
+        return rowValues;
+    }
 	//
 	public WebElementFacade getModalWindowTextLabel(){
 		return find(By.xpath("*//center/div[@id='alertTextOK']"));
