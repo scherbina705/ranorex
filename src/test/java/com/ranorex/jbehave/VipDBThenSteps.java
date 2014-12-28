@@ -1,17 +1,17 @@
 package com.ranorex.jbehave;
 
-import com.ranorex.steps.VipDatabaseSteps;
+import com.ranorex.steps.VipDatabaseThucydidesSteps;
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
 
 public class VipDBThenSteps {
     @Steps
-    VipDatabaseSteps step;
+    VipDatabaseThucydidesSteps step;
 
     @Then("new row added to the end of the table with values <firstName>, <lastName>, <gender>, <category>")
     public void firstRowAddedWithValues(@Named("firstName") String firstName, @Named("lastName") String lastName, @Named("gender") String gender, @Named("category") String category){
-        step.newRowShouldContainValues(firstName,lastName,category,gender);
+        step.newRowShouldContainValues(firstName, lastName, category, gender);
     }
 
     @Then("appear modal window with text: $text")
@@ -34,8 +34,28 @@ public class VipDBThenSteps {
         step.saveButtonShouldBeDisabled();
     }
 
-    @Then("$rowsNumber rows appear in the table")
-    public void rowsAppearInTable(int rowsNumber){
-        step.rowsInTheTableShouldEquals(rowsNumber);
+    @Then("rows appear in the table")
+    public void rowsAppearInTable(){
+        step.tableShouldNotBeEmpty();
+    }
+
+    @Then("table is cleared")
+    public void tableCleared(){
+        step.rowsInTheTableShouldEquals(0);
+    }
+
+    @Then("VIP with <firstName>, <lastName>, <gender>, <category> is removed from the table")
+    public void checkIfRowRemoved (@Named("firstName") String firstName, @Named("lastName") String lastName, @Named("gender") String gender, @Named("category") String category){
+        step.lastRowShouldBeDeleted(firstName,lastName,gender,category);
+    }
+
+    @Then("vip count number should equal table rows number")
+    public void checkVipCounter(){
+        step.vipCounterShouldEqualRowsCounter();
+    }
+
+    @Then("the user is redirected to Home page")
+    public void redirectionToHomePage(){
+        step.shouldBeRedirectedToHomePage();
     }
 }

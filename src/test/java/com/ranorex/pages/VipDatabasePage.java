@@ -11,8 +11,8 @@ import java.util.List;
 @DefaultUrl("http://www.ranorex.com/web-testing-examples/vip/")
 public class VipDatabasePage extends CommonPage{
 
-    public WebElementFacade getDisconnectConnectButton(){
-        return find(By.id("connect"));
+    public WebElementFacade getLinkToHome(){
+        return find(By.id("logo"));
     }
 
     public WebElementFacade getConnectionLabel(){
@@ -35,17 +35,14 @@ public class VipDatabasePage extends CommonPage{
 		return new Select(getDriver().findElement(By.id("Category")));
 	}
 
-	//Buttons
-	public WebElementFacade getFemaleRadioButton(){
-		return find(By.xpath("//input[@id='Gender' and @value='female']"));
-	}
+    public WebElementFacade getModalWindowTextLabel(){
+        return find(By.xpath("*//center/div[@id='alertTextOK']"));
+    }
 
-	public WebElementFacade getMaleRadioButton(){
-		return find(By.xpath("//input[@id='Gender' and @value='male']"));
-	}
+	//Buttons
 
 	public WebElementFacade getGenderRadioButton(String gender){
-		return find(By.xpath("//input[@id='Gender' and @value='"+gender+"']"));
+		return find(By.xpath("//input[@id='Gender' and @value='"+gender.toLowerCase()+"']"));
 	}
 
 	public WebElementFacade getAddButton(){
@@ -68,12 +65,26 @@ public class VipDatabasePage extends CommonPage{
 		return find(By.id("Clear"));
 	}
 
+    public WebElementFacade getModalWindowOkButton(){
+        return find(By.xpath("//button[contains(text(), 'OK')]"));
+    }
+
+    public WebElementFacade getDisconnectConnectButton(){
+        return find(By.id("connect"));
+    }
+
+    //Table
+
 	public List<WebElementFacade> getTableWebElements(){
 		return findAll(By.xpath("//tr[@id='heading']/following-sibling::tr"));
 	}
 
     public List<WebElementFacade> getLastRowWebelements(){
         return findAll(By.xpath("//tr[@id='heading']/following-sibling::tr[last()]/td/following-sibling::td"));
+    }
+
+    public WebElementFacade getLastRowRadioButton(){
+        return find(By.xpath("//tr[@id='heading']/following-sibling::tr[last()]/td/input"));
     }
 
     public List<String> getRowValues(List<WebElementFacade> RowWebElements){
@@ -83,12 +94,5 @@ public class VipDatabasePage extends CommonPage{
         }
         return rowValues;
     }
-	//
-	public WebElementFacade getModalWindowTextLabel(){
-		return find(By.xpath("*//center/div[@id='alertTextOK']"));
-	}
 
-	public WebElementFacade getModalWindowOkButton(){
-		return find(By.xpath("//button[contains(text(), 'OK')]"));
-	}
 }

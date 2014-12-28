@@ -2,7 +2,7 @@ Meta: Adding VIP
 
 Narrative:
 As a user
-I want to add data to DB
+I want to add VIP to table
 So that I can increase VIPs in the DB
 
 Lifecycle:
@@ -18,7 +18,6 @@ And the user select category <category>
 And the user select gender <gender>
 And the user click on Add button
 Then new row added to the end of the table with values <firstName>, <lastName>, <gender>, <category>
-And vip count value equals 1
 
 Examples:|firstName|lastName|category|gender|
 |Tom|Johns|Music|Male|

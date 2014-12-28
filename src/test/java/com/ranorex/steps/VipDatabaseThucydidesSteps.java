@@ -12,7 +12,7 @@ import java.util.List;
 import static com.thoughtworks.selenium.SeleneseTestBase.assertFalse;
 import static com.thoughtworks.selenium.SeleneseTestBase.assertTrue;
 
-public class VipDatabaseSteps extends ScenarioSteps{
+public class VipDatabaseThucydidesSteps extends ScenarioSteps{
     VipDatabasePage page;
 
     @Step
@@ -29,6 +29,11 @@ public class VipDatabaseSteps extends ScenarioSteps{
     @Step
     public void clickOnConnectButton(){
         page.getDisconnectConnectButton().click();
+    }
+
+    @Step
+    public void clickOnClearButton(){
+        page.getClearButton().click();
     }
 
     @Step
@@ -52,7 +57,6 @@ public class VipDatabaseSteps extends ScenarioSteps{
 	public void saveButtonShouldBeDisabled(){
 		assertFalse(page.getSaveButton().isEnabled());
 	}
-///////
 
 	@Step
 	public void fillFirstName(String firstName){
@@ -74,12 +78,6 @@ public class VipDatabaseSteps extends ScenarioSteps{
 		page.getGenderRadioButton(gender).click();
 	}
 
-    @Step
-    public void fillAnyValuesForVIP(){
-        fillFirstName("ANY_VALUE");
-        fillLastName("ANY_VALUE");
-    }
-
 	@Step
 	public void clickOnAddButton(){
 		page.getAddButton().click();
@@ -95,10 +93,34 @@ public class VipDatabaseSteps extends ScenarioSteps{
         page.getSaveButton().click();
     }
 
+    @Step
+    public void clickOnDeleteButton(){
+        page.getDeleteButton().click();
+    }
+
+    @Step
+    public void checkLastRowRadioButton(){
+        page.getLastRowRadioButton().click();
+    }
+
 	@Step
 	public void tableShouldBeEmpty(){
 		assertTrue(page.getTableWebElements().size()==0);
 	}
+
+    @Step
+    public void tableShouldNotBeEmpty(){
+        assertTrue(page.getTableWebElements().size()>0);
+    }
+
+    @Step
+    public void lastRowShouldBeDeleted(String firstName, String lastName, String gender, String category){
+        List<String> rowValues = page.getRowValues(page.getLastRowWebelements());
+        assertFalse(rowValues.contains(firstName));
+        assertFalse(rowValues.contains(lastName));
+        assertFalse(rowValues.contains(gender));
+        assertFalse(rowValues.contains(category));
+    }
 
     @Step
     public void newRowShouldContainValues(String firstName, String lastName, String gender, String category){
@@ -114,14 +136,6 @@ public class VipDatabaseSteps extends ScenarioSteps{
         assertTrue(rowsNumber == page.getTableWebElements().size());
     }
 
-    @Step
-	public void vipCountValueShouldEquals(String number){
-		String labelText = page.getVIPCountLabel().getText();
-		//needed number is located in the end of the of the label text: "VIP count: 2"
-		String lastLabelCharacter = labelText.substring(labelText.lastIndexOf(" ")+1);
-		assertTrue(number.equals(lastLabelCharacter));
-	}
-
 	@Step
 	public void textInModalWindowShouldContain(String text){
 		page.switchToModalWindow();
@@ -130,4 +144,24 @@ public class VipDatabaseSteps extends ScenarioSteps{
 		page.switchBackToMainWindow();
         assertTrue(modalWindowText.contains(text));
 	}
+
+    @Step
+    public void vipCounterShouldEqualRowsCounter(){
+        String rowsNumber=String.valueOf(page.getTableWebElements().size());
+        String labelText = page.getVIPCountLabel().getText();
+        //needed number is located in the end of the of the label text: "VIP count: 2"
+        String lastLabelCharacter = labelText.substring(labelText.lastIndexOf(" ")+1);
+        assertTrue(rowsNumber.equals(lastLabelCharacter));
+    }
+
+    @Step
+    public void clickOnHomeLink(){
+        page.getLinkToHome().click();
+    }
+
+    @Step
+    public void shouldBeRedirectedToHomePage(){
+        String homePageURL = "http://www.ranorex.com/";
+        assertTrue(homePageURL.equals(getDriver().getCurrentUrl()));
+    }
 }

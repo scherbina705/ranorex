@@ -43,11 +43,11 @@
             <version>4.11</version>
             <scope>test</scope>
         </dependency>
-		<!--<dependency>-->
-			<!--<groupId>org.slf4j</groupId>-->
-			<!--<artifactId>slf4j-simple</artifactId>-->
-			<!--<version>1.6.1</version>-->
-		<!--</dependency>-->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<version>1.6.1</version>
+		</dependency>
     </dependencies>
     <build>
         <plugins>
@@ -56,7 +56,7 @@
                 <version>${maven-failsafe-plugin.version}</version>
                 <configuration>
                     <includes>
-                        <include>**/*Story.java</include>
+                        <include>**/*TestRunner.java</include>
                     </includes>
                     <systemPropertyVariables>
                         <webdriver.driver>${webdriver.driver}</webdriver.driver>
@@ -64,7 +64,7 @@
                     </systemPropertyVariables>
 					<parallel>classes</parallel>
 					<forkMode>perthread</forkMode>
-					<threadCount>4</threadCount>
+					<threadCount>7</threadCount>
                 </configuration>
                 <executions>
                     <execution>

@@ -1,14 +1,14 @@
 package com.ranorex.jbehave;
 
-import com.ranorex.steps.VipDatabaseSteps;
+import com.ranorex.steps.VipDatabaseThucydidesSteps;
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Given;
-import org.jbehave.core.annotations.Then;
+import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.When;
 
 public class VipDBGivenSteps {
     @Steps
-    VipDatabaseSteps step;
+    VipDatabaseThucydidesSteps step;
 
     @Given("connection status should be $status")
     public void userIsConnectedToDB(String status){
@@ -26,12 +26,6 @@ public class VipDBGivenSteps {
         step.clickOnLoadButton();
     }
 
-    @Then("vip count value equals $number")
-    @Given("vip count value equals $number")
-    public void vipCountValue(String number){
-        step.vipCountValueShouldEquals(number);
-    }
-
     @Given("the user is on the VIP DB page")
     public void UserIsOnVIPDBPage(){
         step.openPage();
@@ -43,9 +37,12 @@ public class VipDBGivenSteps {
         step.clickOnDisconnectButton();
     }
 
-    @Given("the user added VIP to the table")
-    public void addVIPToTable(){
-        step.fillAnyValuesForVIP();
+    @Given("the user added VIP to the table with values <firstName>, <lastName>, <gender>, <category>")
+    public void addVIPToTable(@Named("firstName") String firstName, @Named("lastName") String lastName, @Named("gender") String gender, @Named("category") String category){
+        step.fillFirstName(firstName);
+        step.fillLastName(lastName);
+        step.selectGenderByValue(gender);
+        step.selectCategory(category);
         step.clickOnAddButton();
     }
 }

@@ -10,7 +10,8 @@ Before:
 Given the user is on the VIP DB page
 Given connection status should be Online
 
-Scenario: loading of 6 default values to the table from DB
+Scenario: Loading of default values to the table from DB
 When the user click on Load button
-Then 6 rows appear in the table
-And vip count value equals 6
+Then rows appear in the table
+And vip count number should equal table rows number
+

@@ -1,14 +1,15 @@
 package com.ranorex.jbehave;
 
 
-import com.ranorex.steps.VipDatabaseSteps;
+import com.ranorex.steps.VipDatabaseThucydidesSteps;
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.When;
 
 public class VipDBWhenSteps {
+
     @Steps
-    VipDatabaseSteps step;
+    VipDatabaseThucydidesSteps step;
 
     @When("the user fill First Name with <firstName>")
     public void userFillFirstName(@Named("firstName") String firstName){
@@ -49,4 +50,25 @@ public class VipDBWhenSteps {
     public void clickOnSaveButton(){
         step.clickOnSaveButton();
     }
+
+    @When("the user click on Clear button")
+    public void clickOnClearButton(){
+        step.clickOnClearButton();
+    }
+
+    @When("the user click on Delete button")
+    public void clickOnDeleteButton(){
+        step.clickOnDeleteButton();
+    }
+
+    @When("the user check radio button of added VIP in the table")
+    public void checkNewVipRadioButton(){
+        step.checkLastRowRadioButton();
+    }
+
+    @When("the user click on logo image")
+    public void clickingOnLogo(){
+        step.clickOnHomeLink();
+    }
+
 }
