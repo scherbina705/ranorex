@@ -1,5 +1,6 @@
 package com.ranorex.pages;
 
+import com.sun.javafx.image.ByteToIntPixelConverter;
 import net.thucydides.core.annotations.DefaultUrl;
 import net.thucydides.core.annotations.findby.By;
 import net.thucydides.core.pages.WebElementFacade;
@@ -12,7 +13,7 @@ import java.util.List;
 public class VipDatabasePage extends CommonPage{
 
     public WebElementFacade getLinkToHome(){
-        return find(By.id("logo"));
+        return find(By.xpath("//a[@title='Home']"));
     }
 
     public WebElementFacade getConnectionLabel(){
