@@ -2,17 +2,19 @@ package com.ranorex.steps;
 
 
 import com.ranorex.pages.VipDatabasePage;
+import javafx.util.Pair;
+import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.Step;
-import net.thucydides.core.pages.WebElementFacade;
 import net.thucydides.core.steps.ScenarioSteps;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
+import static com.thoughtworks.selenium.SeleneseTestBase.assertEquals;
 import static com.thoughtworks.selenium.SeleneseTestBase.assertFalse;
 import static com.thoughtworks.selenium.SeleneseTestBase.assertTrue;
 
-public class VipDatabaseThucydidesSteps extends ScenarioSteps{
+public class VipDatabaseThucydidesSteps extends ScenarioSteps {
     VipDatabasePage page;
 
     @Step
@@ -163,5 +165,12 @@ public class VipDatabaseThucydidesSteps extends ScenarioSteps{
     public void shouldBeRedirectedToHomePage(){
         String homePageURL = "http://www.ranorex.com/";
         assertTrue(homePageURL.equals(getDriver().getCurrentUrl()));
+    }
+
+    @Step
+    public void checkPositionByText(String text, int rowNumber, int columnNumber){
+        Pair<Integer, Integer> elementIndex = page.getTableIndexByCellText(text);
+        assertEquals(elementIndex.getKey(),rowNumber);
+        assertEquals(elementIndex.getValue(),columnNumber);
     }
 }

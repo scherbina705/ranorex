@@ -1,8 +1,8 @@
 package com.ranorex;
 
-import net.thucydides.jbehave.ThucydidesJUnitStories;
+import net.serenitybdd.jbehave.SerenityStories;
 
-public class SecondThreadTestRunner extends ThucydidesJUnitStories {
+public class SecondThreadTestRunner extends SerenityStories {
     public SecondThreadTestRunner(){
         findStoriesCalled("/secondThread/*.story");
     }

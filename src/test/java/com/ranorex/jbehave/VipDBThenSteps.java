@@ -1,6 +1,7 @@
 package com.ranorex.jbehave;
 
 import com.ranorex.steps.VipDatabaseThucydidesSteps;
+import javafx.util.Pair;
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
@@ -46,7 +47,7 @@ public class VipDBThenSteps {
 
     @Then("VIP with <firstName>, <lastName>, <gender>, <category> is removed from the table")
     public void checkIfRowRemoved (@Named("firstName") String firstName, @Named("lastName") String lastName, @Named("gender") String gender, @Named("category") String category){
-        step.lastRowShouldBeDeleted(firstName,lastName,gender,category);
+        step.lastRowShouldBeDeleted(firstName, lastName, gender, category);
     }
 
     @Then("vip count number should equal table rows number")
@@ -58,4 +59,10 @@ public class VipDBThenSteps {
     public void redirectionToHomePage(){
         step.shouldBeRedirectedToHomePage();
     }
+
+    @Then("last name $text is in the $rowNumber row and in the $columnNumber column")
+    public void checkPosition(String text, int rowNumber, int columnNumber){
+        step.checkPositionByText(text, rowNumber, columnNumber);
+    }
+
 }

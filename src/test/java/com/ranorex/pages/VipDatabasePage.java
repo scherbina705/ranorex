@@ -1,8 +1,10 @@
 package com.ranorex.pages;
 
+import javafx.util.Pair;
+import net.serenitybdd.core.annotations.findby.By;
+import net.serenitybdd.core.pages.WebElementFacade;
+
 import net.thucydides.core.annotations.DefaultUrl;
-import net.thucydides.core.annotations.findby.By;
-import net.thucydides.core.pages.WebElementFacade;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
@@ -94,5 +96,39 @@ public class VipDatabasePage extends CommonPage{
         }
         return rowValues;
     }
+
+	public Pair<Integer, Integer> getTableIndexByCellText(String textToFind){
+		//Gets row count
+		String xpathToTr = "//*[@id='VIPs']/tbody/tr";
+		int rowCount = findAll(By.xpath(xpathToTr)).size(); //
+
+		for(Integer row=1;row<=rowCount;row++){
+			//Gets all columns inside every row
+			Pair<Integer,Integer> elementIndex = searchForValueInColumns(row,textToFind);
+			if(elementIndex!=null){
+				return elementIndex;
+			}
+		}
+		return null;
+	}
+
+	private Pair<Integer, Integer> searchForValueInColumns(Integer row, String textToFind){
+		String xpathToTd = "//*[@id='VIPs']/tbody/tr[@id='heading']/td";
+		Pair<Integer, Integer> elementIndex;
+		//Gets columns count
+		int columnCount=findAll(By.xpath(xpathToTd)).size();
+		for(Integer column=1; column <=columnCount; column++){
+
+			//fetches the cell value based on row & column
+			String xpathToElementByTrAndTd = "//*[@id='VIPs']/tbody/tr[" +row+ "]/td["+column+"]";
+			String cellValue = find(By.xpath(xpathToElementByTrAndTd)).getText();
+
+			if(textToFind.equals(cellValue)){
+				elementIndex = new Pair<Integer, Integer>(row,column);
+				return elementIndex;
+			}
+		}
+		return null;
+	}
 
 }
